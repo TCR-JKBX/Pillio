@@ -7,4 +7,4 @@ if ! command -v xcodegen >/dev/null 2>&1; then
 fi
 
 xcodegen generate --spec project.yml
-echo "MonTraitement.xcodeproj a été créé. Ouvrez-le dans Xcode."
+echo "Pillio.xcodeproj a été créé. Ouvrez-le dans Xcode."
