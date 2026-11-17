@@ -10,11 +10,11 @@
 		225D1AF6085B5B10CFC92ED2 /* MedicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FE8E8CE52101A7223A0A4 /* MedicationStore.swift */; };
 		23E94FFB63457AB4BB12AD3B /* MedicationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE332EBBAC451CFE5FEADBD /* MedicationFormView.swift */; };
 		527E2764FC0F6249BA6AA42D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC980D880B03E3DFF90F607 /* ContentView.swift */; };
-		8102A9C4FB8F0700098031D1 /* MonTraitementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E188D38FBBA6990BDA38CDB4 /* MonTraitementApp.swift */; };
 		975F4BAC5DBB9D4C9EFD7C07 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6139FC96FF74833DD680E212 /* NotificationManager.swift */; };
 		B572C190E6E52F4D35351A80 /* LocalPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB5846278C6E973E03ED75 /* LocalPhotoPicker.swift */; };
 		B68F3D2B3A404F3A178A09CA /* MedicationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C1C3D3DD7E93534C112AF3 /* MedicationRow.swift */; };
 		C812F73B94E7F646E160E1DA /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B8D2300E5FC70D0E58045 /* Medication.swift */; };
+		F817556FFA2C3C830EF1B242 /* PillioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E810494426601814684AA5F9 /* PillioApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +24,7 @@
 		6139FC96FF74833DD680E212 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		6AC980D880B03E3DFF90F607 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		733B8D2300E5FC70D0E58045 /* Medication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
-		E188D38FBBA6990BDA38CDB4 /* MonTraitementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonTraitementApp.swift; sourceTree = "<group>"; };
+		E810494426601814684AA5F9 /* PillioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillioApp.swift; sourceTree = "<group>"; };
 		ECE332EBBAC451CFE5FEADBD /* MedicationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationFormView.swift; sourceTree = "<group>"; };
 		F4FC707A8784F815F4D05826 /* MonTraitement.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MonTraitement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -68,7 +68,7 @@
 		DC54A808269B16853A82B484 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E188D38FBBA6990BDA38CDB4 /* MonTraitementApp.swift */,
+				E810494426601814684AA5F9 /* PillioApp.swift */,
 				7B27B5C77E88A6747060A7A2 /* Models */,
 				E7663D3D632921DD3BD4ADDE /* Services */,
 				4C6542296F2EFC78D2503B19 /* Views */,
@@ -146,8 +146,8 @@
 				23E94FFB63457AB4BB12AD3B /* MedicationFormView.swift in Sources */,
 				B68F3D2B3A404F3A178A09CA /* MedicationRow.swift in Sources */,
 				225D1AF6085B5B10CFC92ED2 /* MedicationStore.swift in Sources */,
-				8102A9C4FB8F0700098031D1 /* MonTraitementApp.swift in Sources */,
 				975F4BAC5DBB9D4C9EFD7C07 /* NotificationManager.swift in Sources */,
+				F817556FFA2C3C830EF1B242 /* PillioApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
