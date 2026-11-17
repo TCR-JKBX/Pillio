@@ -4,8 +4,12 @@ struct ContentView: View {
     @EnvironmentObject private var store: MedicationStore
     @EnvironmentObject private var notifications: NotificationManager
     @State private var showingNewMedication = false
+    @State private var showingNewGroup = false
     @State private var editingMedication: Medication?
+    @State private var editingGroup: MedicationGroup?
     @State private var snoozeDate = Calendar.current.date(byAdding: .minute, value: 30, to: Date()) ?? Date().addingTimeInterval(1800)
+    @State private var showSnoozePicker = false
+    @State private var lastOpenedMedication: UUID?
 
     var body: some View {
         NavigationView {
@@ -19,23 +23,52 @@ struct ContentView: View {
                     }.padding()
                 } else {
                     List {
-                        ForEach(store.medications) { medication in
-                            Button { editingMedication = medication } label: { MedicationRow(medication: medication, photoURL: store.photoURL(for: medication)) }
-                                .buttonStyle(.plain)
-                        }
-                        .onDelete { offsets in
-                            offsets.map { store.medications[$0] }.forEach { medication in
-                                store.delete(medication)
-                                notifications.removeNotifications(for: medication.id)
+                        Section {
+                            ForEach(medications(in: nil)) { medicationRow($0) }
+                        } header: { Text("Sans groupe") }
+
+                        ForEach(store.groups) { group in
+                            Section {
+                                let groupMedications = medications(in: group.id)
+                                if groupMedications.isEmpty {
+                                    Label("Aucun médicament dans ce groupe", systemImage: "pills")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                } else {
+                                    ForEach(groupMedications) { medicationRow($0) }
+                                }
+                            } header: {
+                                HStack {
+                                    Text(group.name)
+                                    Spacer()
+                                    Button { editingGroup = group } label: {
+                                        Image(systemName: "ellipsis.circle")
+                                    }
+                                    .buttonStyle(.plain)
+                                    .accessibilityLabel("Options du groupe \(group.name)")
+                                }
                             }
                         }
                     }
                 }
             }
-            .navigationTitle("Mes traitements")
-            .toolbar { ToolbarItem(placement: .navigationBarTrailing) { Button { showingNewMedication = true } label: { Image(systemName: "plus") }.accessibilityLabel("Ajouter") } }
+            .navigationTitle("Pillio")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button { showingNewMedication = true } label: { Label("Ajouter un médicament", systemImage: "pills") }
+                        Button { showingNewGroup = true } label: { Label("Créer un groupe", systemImage: "folder.badge.plus") }
+                            .disabled(store.medications.isEmpty)
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                    .accessibilityLabel("Ajouter")
+                }
+            }
             .sheet(isPresented: $showingNewMedication) { MedicationFormView(medication: nil) }
             .sheet(item: $editingMedication) { MedicationFormView(medication: $0) }
+            .sheet(isPresented: $showingNewGroup) { MedicationGroupFormView(group: nil) }
+            .sheet(item: $editingGroup) { MedicationGroupFormView(group: $0) }
             .onChange(of: store.medications) { medications in notifications.refreshAll(for: medications) }
             .alert(item: confirmationBinding) { medication in
                 Alert(title: Text("Avez-vous pris \(medication.name) ?"),
@@ -44,7 +77,12 @@ struct ContentView: View {
                         store.confirmTaken(medication.id)
                         notifications.scheduleDaily(medication)
                       },
-                      secondaryButton: .default(Text("Non")) { lastOpenedMedication = medication.id; snoozeDate = Calendar.current.date(byAdding: .minute, value: 30, to: Date()) ?? Date().addingTimeInterval(1800); store.dismissConfirmation(); showSnoozePicker = true })
+                      secondaryButton: .default(Text("Non")) {
+                        lastOpenedMedication = medication.id
+                        snoozeDate = Calendar.current.date(byAdding: .minute, value: 30, to: Date()) ?? Date().addingTimeInterval(1800)
+                        store.dismissConfirmation()
+                        showSnoozePicker = true
+                      })
             }
             .sheet(isPresented: $showSnoozePicker) { snoozeSheet }
             .onAppear { notifications.refreshAll(for: store.medications) }
@@ -52,7 +90,22 @@ struct ContentView: View {
         .navigationViewStyle(.stack)
     }
 
-    @State private var showSnoozePicker = false
+    private func medications(in groupID: UUID?) -> [Medication] {
+        store.medications.filter { $0.groupID == groupID }
+    }
+
+    private func medicationRow(_ medication: Medication) -> some View {
+        Button { editingMedication = medication } label: {
+            MedicationRow(medication: medication, photoURL: store.photoURL(for: medication))
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func deleteMedication(_ medication: Medication) {
+        store.delete(medication)
+        notifications.removeNotifications(for: medication.id)
+    }
+
     private var confirmationBinding: Binding<Medication?> {
         Binding(get: { store.medications.first { $0.id == store.pendingConfirmation } }, set: { if $0 == nil { store.dismissConfirmation() } })
     }
@@ -70,13 +123,14 @@ struct ContentView: View {
                 ToolbarItem(placement: .cancellationAction) { Button("Annuler") { showSnoozePicker = false } }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Programmer") {
-                        if let id = lastOpenedMedication, let medication = store.medications.first(where: { $0.id == id }) { notifications.snooze(medication, until: snoozeDate) }
+                        if let id = lastOpenedMedication, let medication = store.medications.first(where: { $0.id == id }) {
+                            notifications.snooze(medication, until: snoozeDate)
+                        }
                         showSnoozePicker = false
                     }
                 }
             }
         }
     }
-
-    @State private var lastOpenedMedication: UUID?
 }
+

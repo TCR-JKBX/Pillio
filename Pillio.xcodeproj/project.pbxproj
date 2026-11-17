@@ -10,6 +10,7 @@
 		225D1AF6085B5B10CFC92ED2 /* MedicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FE8E8CE52101A7223A0A4 /* MedicationStore.swift */; };
 		23E94FFB63457AB4BB12AD3B /* MedicationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE332EBBAC451CFE5FEADBD /* MedicationFormView.swift */; };
 		527E2764FC0F6249BA6AA42D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC980D880B03E3DFF90F607 /* ContentView.swift */; };
+		76CAF8B5BFDC719E08850E2C /* MedicationGroupFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D5E7AA1F65A9401F35466 /* MedicationGroupFormView.swift */; };
 		95391ADF12E481A1A1736989 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C16EC4E07A51F5A59EE36C0B /* Assets.xcassets */; };
 		975F4BAC5DBB9D4C9EFD7C07 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6139FC96FF74833DD680E212 /* NotificationManager.swift */; };
 		B572C190E6E52F4D35351A80 /* LocalPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB5846278C6E973E03ED75 /* LocalPhotoPicker.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		160D5E7AA1F65A9401F35466 /* MedicationGroupFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationGroupFormView.swift; sourceTree = "<group>"; };
 		19C1C3D3DD7E93534C112AF3 /* MedicationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationRow.swift; sourceTree = "<group>"; };
 		5A1FE8E8CE52101A7223A0A4 /* MedicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationStore.swift; sourceTree = "<group>"; };
 		5EAB5846278C6E973E03ED75 /* LocalPhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPhotoPicker.swift; sourceTree = "<group>"; };
@@ -38,6 +40,7 @@
 				6AC980D880B03E3DFF90F607 /* ContentView.swift */,
 				5EAB5846278C6E973E03ED75 /* LocalPhotoPicker.swift */,
 				ECE332EBBAC451CFE5FEADBD /* MedicationFormView.swift */,
+				160D5E7AA1F65A9401F35466 /* MedicationGroupFormView.swift */,
 				19C1C3D3DD7E93534C112AF3 /* MedicationRow.swift */,
 			);
 			path = Views;
@@ -157,6 +160,7 @@
 				B572C190E6E52F4D35351A80 /* LocalPhotoPicker.swift in Sources */,
 				C812F73B94E7F646E160E1DA /* Medication.swift in Sources */,
 				23E94FFB63457AB4BB12AD3B /* MedicationFormView.swift in Sources */,
+				76CAF8B5BFDC719E08850E2C /* MedicationGroupFormView.swift in Sources */,
 				B68F3D2B3A404F3A178A09CA /* MedicationRow.swift in Sources */,
 				225D1AF6085B5B10CFC92ED2 /* MedicationStore.swift in Sources */,
 				975F4BAC5DBB9D4C9EFD7C07 /* NotificationManager.swift in Sources */,
