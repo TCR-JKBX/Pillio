@@ -22,7 +22,11 @@ struct MedicationFormView: View {
             Form {
                 Section(header: Text("Traitement")) {
                     TextField("Nom (obligatoire)", text: $name)
-                    Picker("Unité", selection: $unit) { units.forEach { Text($0).tag($0) } }
+                    Picker("Unité", selection: $unit) {
+                        ForEach(units, id: \.self) { unit in
+                            Text(unit).tag(unit)
+                        }
+                    }
                     TextField("Stock actuel", text: $stock).keyboardType(.decimalPad)
                     TextField("Quantité par prise", text: $amount).keyboardType(.decimalPad)
                 }

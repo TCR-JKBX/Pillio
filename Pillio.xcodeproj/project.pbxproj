@@ -10,6 +10,7 @@
 		225D1AF6085B5B10CFC92ED2 /* MedicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FE8E8CE52101A7223A0A4 /* MedicationStore.swift */; };
 		23E94FFB63457AB4BB12AD3B /* MedicationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE332EBBAC451CFE5FEADBD /* MedicationFormView.swift */; };
 		527E2764FC0F6249BA6AA42D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC980D880B03E3DFF90F607 /* ContentView.swift */; };
+		95391ADF12E481A1A1736989 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C16EC4E07A51F5A59EE36C0B /* Assets.xcassets */; };
 		975F4BAC5DBB9D4C9EFD7C07 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6139FC96FF74833DD680E212 /* NotificationManager.swift */; };
 		B572C190E6E52F4D35351A80 /* LocalPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB5846278C6E973E03ED75 /* LocalPhotoPicker.swift */; };
 		B68F3D2B3A404F3A178A09CA /* MedicationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C1C3D3DD7E93534C112AF3 /* MedicationRow.swift */; };
@@ -24,9 +25,10 @@
 		6139FC96FF74833DD680E212 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		6AC980D880B03E3DFF90F607 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		733B8D2300E5FC70D0E58045 /* Medication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
+		C16EC4E07A51F5A59EE36C0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E810494426601814684AA5F9 /* PillioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillioApp.swift; sourceTree = "<group>"; };
 		ECE332EBBAC451CFE5FEADBD /* MedicationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationFormView.swift; sourceTree = "<group>"; };
-		F4FC707A8784F815F4D05826 /* Pillio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pillio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4FC707A8784F815F4D05826 /* MonTraitement.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MonTraitement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -52,7 +54,7 @@
 		7A744ED02915FAD7BD1A8064 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F4FC707A8784F815F4D05826 /* Pillio.app */,
+				F4FC707A8784F815F4D05826 /* MonTraitement.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -68,6 +70,7 @@
 		DC54A808269B16853A82B484 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C16EC4E07A51F5A59EE36C0B /* Assets.xcassets */,
 				E810494426601814684AA5F9 /* PillioApp.swift */,
 				7B27B5C77E88A6747060A7A2 /* Models */,
 				E7663D3D632921DD3BD4ADDE /* Services */,
@@ -93,6 +96,7 @@
 			buildConfigurationList = 49604893C5A4C6E46D3D929A /* Build configuration list for PBXNativeTarget "MonTraitement" */;
 			buildPhases = (
 				7F72688CE352E4248CD2A520 /* Sources */,
+				AF4A32BD9AA4786F7164880E /* Resources */,
 			);
 			buildRules = (
 			);
@@ -102,7 +106,7 @@
 			packageProductDependencies = (
 			);
 			productName = MonTraitement;
-			productReference = F4FC707A8784F815F4D05826 /* Pillio.app */;
+			productReference = F4FC707A8784F815F4D05826 /* MonTraitement.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -113,6 +117,8 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
 			};
 			buildConfigurationList = 2AC14EDC6287669ED3CD3EA2 /* Build configuration list for PBXProject "Pillio" */;
 			developmentRegion = en;
@@ -132,6 +138,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AF4A32BD9AA4786F7164880E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95391ADF12E481A1A1736989 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7F72688CE352E4248CD2A520 /* Sources */ = {

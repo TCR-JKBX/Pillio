@@ -4,6 +4,7 @@ struct Medication: Identifiable, Codable, Equatable {
     var id: UUID = UUID()
     var name: String
     var stock: Double
+    var amountPerDose: Double
     var unit: String
     /// Mins après minuit
     var reminderMinutes: [Int]
