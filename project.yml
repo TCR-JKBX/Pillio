@@ -14,7 +14,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: fr.local.Pillio
         PRODUCT_NAME: Pillio
         SWIFT_VERSION: "5.0"
-	GENERATE_INFOPLIST_FILE: YES
+        GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: Pillio
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         TARGETED_DEVICE_FAMILY: "1,2"
