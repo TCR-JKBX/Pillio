@@ -26,7 +26,7 @@
 		733B8D2300E5FC70D0E58045 /* Medication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
 		E810494426601814684AA5F9 /* PillioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillioApp.swift; sourceTree = "<group>"; };
 		ECE332EBBAC451CFE5FEADBD /* MedicationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationFormView.swift; sourceTree = "<group>"; };
-		F4FC707A8784F815F4D05826 /* MonTraitement.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MonTraitement.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4FC707A8784F815F4D05826 /* Pillio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pillio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -52,7 +52,7 @@
 		7A744ED02915FAD7BD1A8064 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F4FC707A8784F815F4D05826 /* MonTraitement.app */,
+				F4FC707A8784F815F4D05826 /* Pillio.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,7 +102,7 @@
 			packageProductDependencies = (
 			);
 			productName = MonTraitement;
-			productReference = F4FC707A8784F815F4D05826 /* MonTraitement.app */;
+			productReference = F4FC707A8784F815F4D05826 /* Pillio.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -113,8 +113,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 2AC14EDC6287669ED3CD3EA2 /* Build configuration list for PBXProject "Pillio" */;
 			developmentRegion = en;
@@ -278,6 +276,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Pillio;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -297,6 +296,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Pillio;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
