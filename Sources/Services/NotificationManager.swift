@@ -5,12 +5,23 @@ import UserNotifications
 final class NotificationManager: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
     private let center = UNUserNotificationCenter.current()
     private var openMedication: ((UUID) -> Void)?
+    private var pendingMedicationIDs: [UUID] = []
     private let categoryID = "MEDICATION_REMINDER"
     private let openActionID = "OPEN_MEDICATION"
+
+    override init() {
+        super.init()
+        // Register before the first screen appears so taps that launch the app
+        // from a terminated state are not lost.
+        center.delegate = self
+    }
 
     func configure(openMedication: @escaping (UUID) -> Void) {
         self.openMedication = openMedication
         center.delegate = self
+        let waitingIDs = pendingMedicationIDs
+        pendingMedicationIDs.removeAll()
+        waitingIDs.forEach { deliverOpen(for: $0) }
         let open = UNNotificationAction(identifier: openActionID, title: "Ouvrir", options: [.foreground])
         let category = UNNotificationCategory(identifier: categoryID, actions: [open], intentIdentifiers: [])
         center.setNotificationCategories([category])
@@ -78,7 +89,15 @@ final class NotificationManager: NSObject, ObservableObject, UNUserNotificationC
         defer { completionHandler() }
         guard let rawID = response.notification.request.content.userInfo["medicationID"] as? String,
               let id = UUID(uuidString: rawID) else { return }
-        DispatchQueue.main.async { self.openMedication?(id) }
+        DispatchQueue.main.async { self.deliverOpen(for: id) }
+    }
+
+    private func deliverOpen(for id: UUID) {
+        guard let openMedication else {
+            pendingMedicationIDs.append(id)
+            return
+        }
+        openMedication(id)
     }
 }
 

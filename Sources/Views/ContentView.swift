@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.scenePhase) private var scenePhase
     @EnvironmentObject private var store: MedicationStore
     @EnvironmentObject private var notifications: NotificationManager
     @State private var showingNewMedication = false
@@ -72,7 +73,7 @@ struct ContentView: View {
             .onChange(of: store.medications) { medications in notifications.refreshAll(for: medications) }
             .alert(item: confirmationBinding) { medication in
                 Alert(title: Text("Avez-vous pris \(medication.name) ?"),
-                      message: Text("Stock actuel : \(medication.stock.formatted()) \(medication.unit)"),
+                      message: Text(confirmationMessage(for: medication)),
                       primaryButton: .default(Text("Oui")) {
                         store.confirmTaken(medication.id)
                         notifications.scheduleDaily(medication)
@@ -80,12 +81,25 @@ struct ContentView: View {
                       secondaryButton: .default(Text("Non")) {
                         lastOpenedMedication = medication.id
                         snoozeDate = Calendar.current.date(byAdding: .minute, value: 30, to: Date()) ?? Date().addingTimeInterval(1800)
-                        store.dismissConfirmation()
                         showSnoozePicker = true
+                        store.dismissConfirmation(advance: false)
                       })
             }
             .sheet(isPresented: $showSnoozePicker) { snoozeSheet }
-            .onAppear { notifications.refreshAll(for: store.medications) }
+            .onAppear {
+                notifications.refreshAll(for: store.medications)
+                store.checkForMissedDoses()
+            }
+            .onChange(of: scenePhase) { phase in
+                if phase == .active {
+                    store.checkForMissedDoses()
+                }
+            }
+            .onChange(of: showSnoozePicker) { isPresented in
+                if !isPresented {
+                    store.resumePendingConfirmations()
+                }
+            }
         }
         .navigationViewStyle(.stack)
     }
@@ -107,7 +121,21 @@ struct ContentView: View {
     }
 
     private var confirmationBinding: Binding<Medication?> {
-        Binding(get: { store.medications.first { $0.id == store.pendingConfirmation } }, set: { if $0 == nil { store.dismissConfirmation() } })
+        Binding(
+            get: { store.medications.first { $0.id == store.pendingConfirmation } },
+            set: { value in
+                if value == nil {
+                    store.dismissConfirmation(advance: !showSnoozePicker)
+                }
+            }
+        )
+    }
+
+    private func confirmationMessage(for medication: Medication) -> String {
+        let stock = "Stock actuel : \(medication.stock.formatted()) \(medication.unit)"
+        guard let scheduledAt = store.pendingConfirmationScheduledAt else { return stock }
+        let time = scheduledAt.formatted(date: .omitted, time: .shortened)
+        return "Rappel de \(time). \(stock)"
     }
 
     private var snoozeSheet: some View {
@@ -133,4 +161,3 @@ struct ContentView: View {
         }
     }
 }
-
